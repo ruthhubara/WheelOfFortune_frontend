@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import './index.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import SignUpPage from './components/SignUp';
+import SignInPage from './components/SignIn';
+import SignInWithGoogle from './components/SignInWithGoogle'
+import { Provider } from 'react-redux';
+import store from './Store/Store'
+
+import * as ROUTES from './constants/routes';
+
+const App = () => (
+  <Router>
+    <Provider store={store}>
+      <div>
+
+        <Switch>
+          <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+          <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+        </Switch>
+      </div>
+    </Provider>
+  </Router>
+);
 
 export default App;
